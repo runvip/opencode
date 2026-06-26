@@ -13,7 +13,7 @@ if (!expectedBunVersion) {
 // relax version requirement
 const expectedBunVersionRange = `^${expectedBunVersion}`
 
-if (!semver.satisfies(process.versions.bun, expectedBunVersionRange)) {
+if (process.env.GITHUB_ACTIONS !== "true" && !semver.satisfies(process.versions.bun, expectedBunVersionRange)) {
   throw new Error(`This script requires bun@${expectedBunVersionRange}, but you are using bun@${process.versions.bun}`)
 }
 
