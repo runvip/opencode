@@ -48,6 +48,7 @@ import { SessionRunnerModel } from "./session/runner/model"
 import { SystemContextBuiltIns } from "./system-context/builtins"
 import { FetchHttpClient } from "effect/unstable/http"
 import { Snapshot } from "./snapshot"
+import { MCP } from "./mcp"
 
 export class LocationServiceMap extends LayerMap.Service<LocationServiceMap>()("@opencode/example/LocationServiceMap", {
   lookup: (ref: Location.Ref) => {
@@ -72,6 +73,7 @@ export class LocationServiceMap extends LayerMap.Service<LocationServiceMap>()("
       Watcher.locationLayer,
       Pty.locationLayer,
       SkillV2.locationLayer,
+      MCP.locationLayer,
       systemContext,
       LocationMutation.locationLayer.pipe(Layer.orDie),
     ).pipe(Layer.provideMerge(location))
